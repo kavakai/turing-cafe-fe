@@ -35,9 +35,11 @@ class App extends Component {
   }
 
   deleteRes = (id) => {
-    fetch(`http://localhost:3001/api/v1/reservations/${id}`)
+    fetch(`http://localhost:3001/api/v1/reservations/${id}`, {
+      method: 'DELETE'
+    })
       .then((response) => response.json())
-      .then((data) => console.log(data))
+      .then((data) => this.setState({reservations: data}))
       .catch((err) => this.setState({ error: err.message }));
   }
 
