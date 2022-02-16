@@ -4,3 +4,8 @@
   padding: 10px;
   background-color: white;
 }
+
+.delete-btn {
+  background-color: teal;
+  color: white
+}

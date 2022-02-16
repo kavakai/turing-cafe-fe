@@ -1,6 +1,10 @@
+import TestData from "./TestData";
+
+
 describe('Home view', () => {
 
   it('Should display all reservations when first visiting the site', () => {
+    cy.intercept("http://localhost:3001/api/v1/reservations", TestData);    
     cy.visit("http://localhost:3000/")
       .get('h1')
       .contains('Turing Cafe Reservations')
@@ -34,6 +38,7 @@ describe('Home view', () => {
       .type("4")
       .should("have.value", 4)
       .get("button")
+      .first()
       .click()
       .get('h2')
       .last()
