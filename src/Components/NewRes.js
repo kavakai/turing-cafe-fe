@@ -13,12 +13,16 @@ class NewRes extends Component {
   }
 
   handleChange = (event) => {
-    event.preventDefault()
     this.setState ({[event.target.name]: [event.target.value]})
   }
 
-  submitNewRes = () => {
-    
+  submitNewRes = (event) => {
+    event.preventDefault()
+    const newRes = {
+      id: Date.now(),
+      ...this.state
+    }
+    this.props.addNewRes(newRes)
   }
 
     render() {
@@ -27,28 +31,41 @@ class NewRes extends Component {
           <input
             type="text"
             placeholder="Name"
+            name="name"
             value={this.state.name}
             onChange={(event) => this.handleChange(event)}
           />
           <input
             type="text"
             placeholder="Date (mm/dd)"
+            name="date"
             value={this.state.date}
             onChange={(event) => this.handleChange(event)}
           />
           <input
-            type="text"
-            placeholder="Time"
+            type="number"
+            placeholder="Time (00:00)"
+            name="time"
+            min="0"
             value={this.state.time}
             onChange={(event) => this.handleChange(event)}
           />
           <input
-            type="text"
+            type="number"
             placeholder="Number of guests"
+            name="number"
+            min='0'
             value={this.state.number}
             onChange={(event) => this.handleChange(event)}
           />
-          <button className='add-res-btn' onClick={() => {this.submitNewRes()}}>Make Reservation</button>
+          <button
+            className="add-res-btn"
+            onClick={(event) => {
+              this.submitNewRes(event);
+            }}
+          >
+            Make Reservation
+          </button>
         </form>
       );
   }
