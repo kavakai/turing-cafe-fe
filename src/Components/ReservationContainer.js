@@ -4,7 +4,7 @@ import './Reservation.css'
 
 
 const ReservationContainer = ({ reservations }) => {
-  let allReservations = reservations.map(reservation => {
+  const allReservations = reservations.map(reservation => {
     return <Reservation
       name={reservation.name}
       date={reservation.date}
