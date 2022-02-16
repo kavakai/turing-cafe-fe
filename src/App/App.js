@@ -37,7 +37,7 @@ class App extends Component {
 
   deleteRes = (id) => {
     fetch(`http://localhost:3001/api/v1/reservations/${id}`)
-      .then((response) => response.json())
+      .then((response) => console.log(response))
       .then((data) => console.log(data))
       .catch(err => console.log(err))
   }
