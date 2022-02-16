@@ -6,6 +6,7 @@ import './Reservation.css'
 const ReservationContainer = ({ reservations, deleteRes}) => {
   const allReservations = reservations.map(reservation => {
     return <Reservation
+      id={reservation.id}
       name={reservation.name}
       date={reservation.date}
       time={reservation.time}

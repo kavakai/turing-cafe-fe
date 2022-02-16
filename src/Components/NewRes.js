@@ -24,6 +24,11 @@ class NewRes extends Component {
       ...this.state
     }
     this.props.addNewRes(newRes)
+    this.clearInputs()
+  }
+
+  clearInputs = () => {
+    this.setState({ id: "", name: "", date: "", time: "", number: "" });
   }
 
     render() {
