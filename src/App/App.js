@@ -7,8 +7,8 @@ class App extends Component {
   constructor() {
     super()
     this.state = {
-      reservations: []
-
+      reservations: [],
+      error: ''
     }
   }
   componentDidMount() {
@@ -18,11 +18,10 @@ class App extends Component {
         console.log(data)
         this.setState({ reservations: data })
       })
-      .catch(err => console.log(err))
+      .catch(err => this.setState({error: err.message}))
   }
 
   addNewRes = (newRes) => {
-    // this.setState({ reservations: [...this.state.reservations, newRes] })
     fetch("http://localhost:3001/api/v1/reservations", {
       method: "POST",
       body: JSON.stringify(newRes),
@@ -31,15 +30,15 @@ class App extends Component {
       },
     })
       .then((response) => response.json())
-      .then((data) => console.log(data))
-      .catch(err => console.log(err))
+      .then((data) => this.setState({ reservations: data }))
+      .catch((err) => this.setState({ error: err.message }));
   }
 
   deleteRes = (id) => {
     fetch(`http://localhost:3001/api/v1/reservations/${id}`)
-      .then((response) => console.log(response))
+      .then((response) => response.json())
       .then((data) => console.log(data))
-      .catch(err => console.log(err))
+      .catch((err) => this.setState({ error: err.message }));
   }
 
   render() {
@@ -50,7 +49,9 @@ class App extends Component {
           <NewRes addNewRes={this.addNewRes}/>
         </div>
         <div className='resy-container'>
-          <ReservationContainer reservations={this.state.reservations} deleteRes={this.deleteRes} />
+          {this.state.error
+            ? <h2 className='err'>{this.state.error}</h2>
+            : <ReservationContainer reservations={this.state.reservations} deleteRes={this.deleteRes} />}
         </div>
       </div>
     )

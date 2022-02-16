@@ -8,7 +8,7 @@ const Reservation = ({ id, name, date, time, number, deleteRes }) => {
       <h3>{date}</h3>
       <h3>{time}</h3>
       <h3>{number}</h3>
-      <button onClick={() => deleteRes(id)}>Delete Reservation</button>
+      <button className='delete-btn' onClick={() => deleteRes(id)}>Delete Reservation</button>
     </div>
 
   )
