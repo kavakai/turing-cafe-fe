@@ -3,7 +3,7 @@ import Reservation from "./Reservation";
 import './Reservation.css'
 
 
-const ReservationContainer = ({ reservations }) => {
+const ReservationContainer = ({ reservations, deleteRes}) => {
   const allReservations = reservations.map(reservation => {
     return <Reservation
       name={reservation.name}
@@ -11,6 +11,7 @@ const ReservationContainer = ({ reservations }) => {
       time={reservation.time}
       number={reservation.number}
       key={reservation.id}
+      deleteRes={deleteRes}
     />
   })
 

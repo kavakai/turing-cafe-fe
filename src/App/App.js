@@ -22,7 +22,21 @@ class App extends Component {
   }
 
   addNewRes = (newRes) => {
-    this.setState({reservations: [...this.state.reservations, newRes]})
+    // this.setState({ reservations: [...this.state.reservations, newRes] })
+    fetch("http://localhost:3001/api/v1/reservations", {
+      method: "POST",
+      body: JSON.stringify(newRes),
+      headers: {
+        "Content-Type": "application/json",
+      },
+    })
+      .then((response) => response.json())
+      .then((data) => console.log(data))
+      .catch(err => console.log(err))
+  }
+
+  deleteRes = () => {
+    
   }
 
   render() {
@@ -33,7 +47,7 @@ class App extends Component {
           <NewRes addNewRes={this.addNewRes}/>
         </div>
         <div className='resy-container'>
-          <ReservationContainer reservations={this.state.reservations} />
+          <ReservationContainer reservations={this.state.reservations} deleteRes={this.deleteRes} />
         </div>
       </div>
     )
