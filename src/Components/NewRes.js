@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import '.NewRes.css'
+import './NewRes.css'
 
 class NewRes extends Component {
   constructor() {
@@ -44,7 +44,7 @@ class NewRes extends Component {
             onChange={(event) => this.handleChange(event)}
           />
           <input
-            type="number"
+            type="text"
             placeholder="Time (00:00)"
             name="time"
             min="0"
