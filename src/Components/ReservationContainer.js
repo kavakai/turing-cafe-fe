@@ -15,7 +15,7 @@ const ReservationContainer = ({ reservations }) => {
   })
 
   return (
-    <div>
+    <div className='res-container'>
       {allReservations}
     </div>
   )
